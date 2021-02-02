@@ -53,20 +53,46 @@ extern int yydebug;
     BODY_END = 263,
     BF_START = 264,
     BF_END = 265,
-    IT_START = 266,
-    IT_END = 267,
-    UL_START = 268,
-    UL_END = 269,
-    OL_START = 270,
-    OL_END = 271,
-    LI_START = 272,
-    LI_END = 273,
-    H1_START = 274,
-    H1_END = 275,
-    TITLE_START = 276,
-    TITLE_END = 277,
-    HREF_START = 278,
-    HREF_END = 279
+    UF_START = 266,
+    UF_END = 267,
+    EM_START = 268,
+    EM_END = 269,
+    TT_START = 270,
+    TT_END = 271,
+    STRONG_START = 272,
+    STRONG_END = 273,
+    SMALL_START = 274,
+    SMALL_END = 275,
+    IT_START = 276,
+    IT_END = 277,
+    UL_START = 278,
+    UL_END = 279,
+    OL_START = 280,
+    OL_END = 281,
+    LI_START = 282,
+    LI_END = 283,
+    H1_START = 284,
+    H1_END = 285,
+    H2_START = 286,
+    H2_END = 287,
+    H3_START = 288,
+    H3_END = 289,
+    H4_START = 290,
+    H4_END = 291,
+    TITLE_START = 292,
+    TITLE_END = 293,
+    FONT_START = 294,
+    FONT_END = 295,
+    CENTER_START = 296,
+    CENTER_END = 297,
+    HREF_START = 298,
+    HREF_END = 299,
+    DL_START = 300,
+    DL_END = 301,
+    DT_START = 302,
+    DT_END = 303,
+    DD_START = 304,
+    DD_END = 305
   };
 #endif
 /* Tokens.  */
@@ -78,20 +104,46 @@ extern int yydebug;
 #define BODY_END 263
 #define BF_START 264
 #define BF_END 265
-#define IT_START 266
-#define IT_END 267
-#define UL_START 268
-#define UL_END 269
-#define OL_START 270
-#define OL_END 271
-#define LI_START 272
-#define LI_END 273
-#define H1_START 274
-#define H1_END 275
-#define TITLE_START 276
-#define TITLE_END 277
-#define HREF_START 278
-#define HREF_END 279
+#define UF_START 266
+#define UF_END 267
+#define EM_START 268
+#define EM_END 269
+#define TT_START 270
+#define TT_END 271
+#define STRONG_START 272
+#define STRONG_END 273
+#define SMALL_START 274
+#define SMALL_END 275
+#define IT_START 276
+#define IT_END 277
+#define UL_START 278
+#define UL_END 279
+#define OL_START 280
+#define OL_END 281
+#define LI_START 282
+#define LI_END 283
+#define H1_START 284
+#define H1_END 285
+#define H2_START 286
+#define H2_END 287
+#define H3_START 288
+#define H3_END 289
+#define H4_START 290
+#define H4_END 291
+#define TITLE_START 292
+#define TITLE_END 293
+#define FONT_START 294
+#define FONT_END 295
+#define CENTER_START 296
+#define CENTER_END 297
+#define HREF_START 298
+#define HREF_END 299
+#define DL_START 300
+#define DL_END 301
+#define DT_START 302
+#define DT_END 303
+#define DD_START 304
+#define DD_END 305
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED

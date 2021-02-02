@@ -61,7 +61,7 @@
 %token BODY_START 
 %token BODY_END 
 %token BF_START 
-%token BF_END 	
+%token BF_END UF_START UF_END EM_START EM_END TT_START TT_END STRONG_START STRONG_END SMALL_START SMALL_END	
 %token IT_START 
 %token IT_END
 %token UL_START 
@@ -72,10 +72,22 @@
 %token LI_END
 %token H1_START
 %token H1_END
+%token H2_START
+%token H2_END
+%token H3_START
+%token H3_END
+%token H4_START
+%token H4_END
 %token TITLE_START
-%token TITLE_END
+%token TITLE_END FONT_START FONT_END CENTER_START CENTER_END
 %token HREF_START
-%token HREF_END
+%token HREF_END 
+%token DL_START
+%token DL_END
+%token DT_START
+%token DT_END
+%token DD_START
+%token DD_END
   
 /* Rule Section */
 %% 
@@ -142,6 +154,27 @@ Item 	  : H1_START{
           H1_END{
                   popNode();
                 } 
+  |   H2_START{
+                      pushNode("<h2>");
+                  }  
+          Html 
+          H2_END{
+                  popNode();
+                } 
+  |   H3_START{
+                      pushNode("<h3>");
+                  }  
+          Html 
+          H3_END{
+                  popNode();
+                } 
+  | H4_START{
+                      pushNode("<h4>");
+                  }  
+          Html 
+          H4_END{
+                  popNode();
+                } 
   |   HREF_START{
                   pushNode("<a href>");
                 }  
@@ -156,6 +189,55 @@ Item 	  : H1_START{
       BF_END{
               popNode();  
             }
+  |   UF_START{
+                  pushNode("<u>");
+                }  
+      Html 
+      UF_END{
+                popNode();
+              }
+  |   EM_START{
+                  pushNode("<em>");
+                }  
+      Html 
+      EM_END{
+                popNode();
+              } 
+  |   TT_START{
+                  pushNode("<tt>");
+                }  
+      Html 
+      TT_END{
+                popNode();
+              }
+  |   STRONG_START{
+                  pushNode("<strong>");
+                }  
+      Html 
+      STRONG_END{
+                popNode();
+              }
+  |   SMALL_START{
+                  pushNode("<small>");
+                }  
+      Html 
+      SMALL_END{
+                popNode();
+              }
+  |   CENTER_START{
+                  pushNode("<center>");
+                }  
+      Html 
+      CENTER_END{
+                popNode();
+              }
+  |   FONT_START{
+                  pushNode("<font size>");
+                }  
+      Html 
+      FONT_END{
+                popNode();
+              }
   |   IT_START{
                 pushNode("<i>");
               }  
@@ -164,6 +246,7 @@ Item 	  : H1_START{
               popNode();
             }
   |   List
+  |   Desc_List
   |   Other
 ;
 List 	  :   UL_START{
@@ -196,13 +279,44 @@ OneItem 	  :   LI_START{
                         popNode();
                       }
 ;
-Other 	  : /* empty */
-            | ";"
+Desc_List   :   DL_START{
+                          pushNode("<dl>");
+                        }
+                DItemList 
+                DL_END{
+                  popNode();
+                }
+;
+DItemList   :   DItemList Wspace OneDItem
+                | OneDItem
+;
+OneDItem    :   DT_START{
+                          pushNode("<dt>");
+                        } 
+                Html
+                DT_END
+                DItemDescList{
+                                popNode();
+                              } 
+;
+DItemDescList   :   DItemDescList Wspace OneDDescItem
+                    | OneDDescItem
+;
+OneDDescItem  :   DD_START{
+                            pushNode("<dd>");
+                          } 
+                  Html 
+                  DD_END{
+                    popNode();
+                  }
+;
+Other 	  : /* empty */ ";"
 ;
 %% 
   
 #include"lex.yy.c" 
 
+//push node in the stack
 void pushNode(char*name)
 {
   temp_ptr->vertex=top(root,temp_ptr->data);
@@ -420,7 +534,7 @@ void yyerror(char *msg)
 int main()  
 { 
     extern FILE *yyin, *yyout;
-    graph = createGraph(10); 
+    graph = createGraph(SIZE); 
         /* open the source file  
            in read mode 
            lex file1.l
@@ -428,7 +542,7 @@ int main()
            gcc y.tab.c -lfl -ly
            ./a.out
            */
-    yyin=fopen("output.txt","r"); 
+    yyin=fopen("input.txt","r"); 
     //printf("Enter:\t");
 
     yyparse(); 
