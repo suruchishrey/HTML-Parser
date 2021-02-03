@@ -92,7 +92,8 @@ extern int yydebug;
     DT_START = 302,
     DT_END = 303,
     DD_START = 304,
-    DD_END = 305
+    DD_END = 305,
+    INVALID_TAG = 306
   };
 #endif
 /* Tokens.  */
@@ -144,6 +145,7 @@ extern int yydebug;
 #define DT_END 303
 #define DD_START 304
 #define DD_END 305
+#define INVALID_TAG 306
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
