@@ -1,25 +1,25 @@
 # HTML-Parser
 The grammar has been created based on the assumption that HTML has a basic structure of 
 
-"<html>"
+html
 
-"<head>"
-
-(other tags)
-
-...
-
-"</head>"
-
-"<body>"
+head
 
 (other tags)
 
 ...
 
-"</body>" 
+/head
 
-"</html>"
+body
+
+(other tags)
+
+...
+
+/body 
+
+/html
 
 This is the only valid format of an html page.
 
